@@ -13,13 +13,12 @@ let resetTime = Date.now() + 5 * 60 * 1000;
 
 app.use((req, res, next) => {
   const userAgent = req.get('User-Agent');
-  const allowedUserAgentPattern = /^github-camo \([a-zA-Z0-9]+\)$/;
 
-  if (allowedUserAgentPattern.test(userAgent)) {
+  if (userAgent.includes('github-camo')) {
     return next();
+  } else {
+    res.status(403).json({ error: '403 Forbidden. Cope harder!'});
   }
-
-  res.status(403).json({ error: '403 Forbidden. Cope harder!'});
 });
 
 app.get("/", async (res) => {
