@@ -11,6 +11,16 @@ let lastImageBuffer = null;
 let requestCount = 0;
 let resetTime = Date.now() + 5 * 60 * 1000;
 
+app.use((req, res, next) => {
+  const allowedUserAgent = 'github-camo';
+
+  if (req.get('User-Agent') === allowedUserAgent) {
+    return next();
+  }
+
+  res.status(403).json({ error: '403 Forbidden. Cope harder!'});
+});
+
 app.get("/", async (req, res) => {
   const now = Date.now();
   
