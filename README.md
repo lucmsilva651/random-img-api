@@ -1,11 +1,14 @@
-# Random Image API
-A Node.js API that serves random images.
+# Random README Image API
+A Node.js API that serves random images on your readme.
 
 ## Installation
 - Clone the repository with Git or download the source.
 - Put your desired images on ``images`` inside the ``src`` folder.
 - Install all project dependencies with ``npm i`` or ``bun i``.
 - Run the server with ``npm start`` or ``bun start``.
+
+### Deploy with Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flucmsilva651%2Frandom-readme-image-api&project-name=random-readme-image-api&repository-name=random-readme-image-api&redirect-url=https%3A%2F%2Fgithub.com%2Flucmsilva651%2Frandom-readme-image-api%2F)
 
 ## Development: Personal tip
 While testing, you can use ``nodemon`` to avoid restarting manually the server whenever you changed something.
