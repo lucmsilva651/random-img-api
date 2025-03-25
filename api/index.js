@@ -5,9 +5,29 @@ const sharp = require("sharp");
 const app = express();
 const port = 3001;
 const imagesDir = path.join(__dirname, "images");
-let lastImage = null;
 
-app.get("/", (req, res) => {
+let lastImage = null;
+let lastImageBuffer = null;
+let requestCount = 0;
+let resetTime = Date.now() + 5 * 60 * 1000;
+
+app.get("/", async (req, res) => {
+  const now = Date.now();
+  
+  if (now > resetTime) {
+    requestCount = 0;
+    resetTime = now + 5 * 60 * 1000;
+  }
+
+  if (requestCount >= 2) {
+    if (lastImageBuffer) {
+      res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+      return res.end(lastImageBuffer);
+    } else {
+      return res.status(429).json({ error: "Too many requests. Try again later." });
+    }
+  }
+
   fs.readdir(imagesDir, async (err, files) => {
     if (err || files.length === 0) {
       return res.status(404).json({ error: "No image found on /images. Did you forget to add your images there?" });
@@ -22,12 +42,13 @@ app.get("/", (req, res) => {
     const imagePath = path.join(imagesDir, randomImage);
 
     try {
-      const imageBuffer = await sharp(imagePath)
+      lastImageBuffer = await sharp(imagePath)
         .resize(300, 300, { fit: "cover" })
         .toBuffer();
 
+      requestCount++;
       res.writeHead(200, { 'Content-Type': 'image/jpeg' });
-      res.end(imageBuffer);
+      res.end(lastImageBuffer);
     } catch (error) {
       res.status(500).json({ error: "Error processing image." });
     }
