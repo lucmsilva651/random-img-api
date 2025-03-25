@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   res.status(403).json({ error: '403 Forbidden. Cope harder!'});
 });
 
-app.get("/", async (req, res) => {
+app.get("/", async (res) => {
   const now = Date.now();
   
   if (now > resetTime) {
