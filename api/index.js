@@ -12,9 +12,10 @@ let requestCount = 0;
 let resetTime = Date.now() + 5 * 60 * 1000;
 
 app.use((req, res, next) => {
-  const allowedUserAgent = 'github-camo';
+  const userAgent = req.get('User-Agent');
+  const allowedUserAgentPattern = /^github-camo \(\d+\)$/;
 
-  if (req.get('User-Agent') === allowedUserAgent) {
+  if (allowedUserAgentPattern.test(userAgent)) {
     return next();
   }
 
