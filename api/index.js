@@ -3,11 +3,11 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3001;
 const imagesDir = path.join(__dirname, "images");
 let lastImage = null;
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   fs.readdir(imagesDir, async (err, files) => {
     if (err || files.length === 0) {
       return res.status(404).json({ error: "No image found on /images. Did you forget to add your images there?" });
@@ -23,7 +23,7 @@ app.get("/", async (req, res) => {
 
     try {
       const imageBuffer = await sharp(imagePath)
-        .resize(450, 450, { fit: "cover" })
+        .resize(300, 300, { fit: "cover" })
         .toBuffer();
 
       res.writeHead(200, { 'Content-Type': 'image/jpeg' });
@@ -37,3 +37,5 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}.`);
 });
+
+module.exports = app;

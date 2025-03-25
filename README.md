@@ -15,7 +15,7 @@ With this, you can avoid restarting your server manually. Do not worry. ``nodemo
 
 ## Notes
 Please read this carefully if you are really going to use this:
-- Images are being served on a 1:1 aspect ratio, with the resolution being 400x400 by default. Feel free to change this if you want.
+- Images are being served on a 1:1 aspect ratio, with the resolution being 300x300 by default. Feel free to change this if you want.
 - Ignore the sample images. These are only meant to be on my personal README.
 
 ## License
