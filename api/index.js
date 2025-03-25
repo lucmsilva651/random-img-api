@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const app = express();
-const port = 3001;
+const port = 4000;
 const imagesDir = path.join(__dirname, "images");
 
 let lastImage = null;
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   }
 });
 
-app.get("/", async (res) => {
+app.get("/", async (req, res) => {
   const now = Date.now();
   
   if (now > resetTime) {
