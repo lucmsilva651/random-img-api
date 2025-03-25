@@ -17,7 +17,14 @@ app.use((req, res, next) => {
   if (userAgent.includes('github-camo')) {
     return next();
   } else {
-    res.status(403).json({ error: '403 Forbidden. Cope harder!'});
+    res.status(403).send(`
+    <p>403 Forbidden. Cope harder!</p>
+    <script>
+      setTimeout(() => {
+          window.location.href = "https://github.com/lucmsilva651/random-img-api";
+      }, 5000);
+    </script>
+    `);
   }
 });
 
