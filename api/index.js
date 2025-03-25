@@ -54,6 +54,7 @@ app.get("/", async (req, res) => {
     try {
       lastImageBuffer = await sharp(imagePath)
         .resize(300, 300, { fit: "cover" })
+        .toFormat('webp')
         .toBuffer();
 
       requestCount++;
