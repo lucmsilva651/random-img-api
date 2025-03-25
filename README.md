@@ -17,6 +17,7 @@ With this, you can avoid restarting your server manually. Do not worry. ``nodemo
 Please read this carefully if you are really going to use this:
 - Images are being served on a 1:1 aspect ratio, with the resolution being 300x300 by default. Feel free to change this if you want.
 - Ignore the sample images. These are only meant to be on my personal README.
+- Only requests from GitHub's Camo service are allowed.
 
 ## License
 2025 Lucas Gabriel (lucmsilva) - BSD 3-Clause
