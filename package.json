@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "bun src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "sharp": "^0.33.5"
+  }
+}
